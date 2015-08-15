@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> FeedbackSample </string>
+    <string name="user_id"> No User ID Present </string>
+    <string name="doctor_id"> No Doctor ID Present </string>
+    <string name="button_send"> Send </string>
+    <string-array name="input_feedback">
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+      <item>4</item>
+      <item>5</item>
+    </string-array>
+</resources>

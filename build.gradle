@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.11.1'
+    }
+}
+
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1"
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+        minSdkVersion 15
+        targetSdkVersion 19
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+    }
+    productFlavors {
+        dev {
+            applicationId = "com.intelimina.feedbacksample"
+            buildConfigField "String", "SERVER_URL", "\"http://172.16.10.114:3000\""
+            buildConfigField "String", "FEEDBACK_PATH", "\"/api/v1/feedbacks.json\""
+            buildConfigField "String", "FEEDBACK_TOKEN", "\"SAMPLETOKEN\""
+        }
+
+        staging {
+            applicationId = "com.intelimina.feedbacksample"
+            buildConfigField "String", "SERVER_URL", "\"http://biofemme-dev.intelimina.com\""
+            buildConfigField "String", "FEEDBACK_PATH", "\"/api/v1/feedbacks.json\""
+            buildConfigField "String", "FEEDBACK_TOKEN", "\"PUT_YOUR_DESIRED_TOKEN_HERE\""
+        }        
+    }
+}
+
+dependencies{
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
