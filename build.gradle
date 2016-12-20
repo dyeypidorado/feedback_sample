@@ -1,14 +1,14 @@
+apply plugin: 'com.android.application'
+
 buildscript {
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.11.1'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
-
-apply plugin: 'android'
 
 android {
     compileSdkVersion 19
@@ -17,7 +17,7 @@ android {
     defaultConfig {
         versionCode 1
         versionName "1.0"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 19
     }
 
@@ -35,20 +35,32 @@ android {
     productFlavors {
         dev {
             applicationId = "com.intelimina.feedbacksample"
-            buildConfigField "String", "SERVER_URL", "\"http://172.16.10.114:3000\""
+            buildConfigField "String", "SERVER_URL", "\"http://" + getLocalIp("en0") + ":3000/\""
             buildConfigField "String", "FEEDBACK_PATH", "\"/api/v1/feedbacks.json\""
-            buildConfigField "String", "FEEDBACK_TOKEN", "\"SAMPLETOKEN\""
+            buildConfigField "String", "FEEDBACK_TOKEN", "\"2HsD41-3spBoC_ybeu-Y\""
         }
 
         staging {
             applicationId = "com.intelimina.feedbacksample"
             buildConfigField "String", "SERVER_URL", "\"http://biofemme-dev.intelimina.com\""
             buildConfigField "String", "FEEDBACK_PATH", "\"/api/v1/feedbacks.json\""
-            buildConfigField "String", "FEEDBACK_TOKEN", "\"PUT_YOUR_DESIRED_TOKEN_HERE\""
-        }        
+            buildConfigField "String", "FEEDBACK_TOKEN", "\"MYSAMPLE_TOKEN\""
+        }
     }
 }
 
-dependencies{
+dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:support-v4:19.1.0'
+}
+
+// http://bartinger.at/inject-dynamic-host-ip-address-with-gradle/
+def getLocalIp(String interfaceName) {
+    NetworkInterface iface = NetworkInterface.getByName(interfaceName);
+    for (InterfaceAddress address : iface.getInterfaceAddresses()) {
+        String ip = address.getAddress().getHostAddress()
+        if (ip.length() <= 15) {
+            return ip;
+        }
+    }
 }
