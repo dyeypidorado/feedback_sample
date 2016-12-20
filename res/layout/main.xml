@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:weightSum="1"
+    android:layout_height="match_parent">
+
     <TextView android:id="@+id/user_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text=""
-        />
+        android:gravity="top"
+        android:layout_weight="0.02" />
+
     <TextView android:id="@+id/doctor_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text=""
-        />
-    <Spinner android:id="@+id/feedback_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
-    <Button
+        android:gravity="top" />
+
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:stepSize="1"
+        android:numStars="5"
+        android:id="@+id/ratingBar" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/remarks"
+        android:hint="@string/remarks"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_vertical"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/button_send"
-        android:onClick="sendFeedback" />
+        android:id="@+id/submit"
+        android:onClick="sendFeedback"
+        android:gravity="center" />
 </LinearLayout>
 
