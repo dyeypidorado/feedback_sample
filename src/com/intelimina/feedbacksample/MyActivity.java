@@ -68,20 +68,26 @@ public class MyActivity extends Activity {
         EditText remarksText = (EditText) findViewById(R.id.remarks);
         String remarks = remarksText.getText().toString();
 
-        Map<String, String> params = new HashMap<>();
+        // Build the params to be sent on the server.
+        // Fill the value of the corresponding Hash map keys with
+        // inputs from your own app.
 
+        Map<String, String> params = new HashMap<>();
         params.put("apk_token", BuildConfig.FEEDBACK_TOKEN);
         params.put("user_id", user_id);
         params.put("doctor_id", doctor_id);
-
         params.put("data[rating]", feedback.toString());
         params.put("data[comments]", remarks);
-
 
         if (user_id.equals("") || doctor_id.equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "No User/Doctor found.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
+            // Previous prepared params will then used by the PostFeedback
+            // class to send inputs to the server.
+            //
+            // For advance features, you can save the feedback inputs in a file/DB in a meantime
+            // then use this when an internet connection is already available.
             new PostFeedback(getApplicationContext(), params);
         }
     }

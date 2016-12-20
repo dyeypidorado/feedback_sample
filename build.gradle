@@ -43,6 +43,9 @@ android {
             applicationId = "com.intelimina.feedbacksample"
             buildConfigField "String", "SERVER_URL", "\"http://biofemme-dev.intelimina.com\""
             buildConfigField "String", "FEEDBACK_PATH", "\"/api/v1/feedbacks.json\""
+
+            // Change the value of this token by the one provided on the CMS
+            // when uploading your APK.
             buildConfigField "String", "FEEDBACK_TOKEN", "\"MYSAMPLE_TOKEN\""
         }
     }
@@ -57,7 +60,7 @@ repositories {
     jcenter()
 }
 
-// http://bartinger.at/inject-dynamic-host-ip-address-with-gradle/
+// Reference: http://bartinger.at/inject-dynamic-host-ip-address-with-gradle/
 def getLocalIp(String interfaceName) {
     NetworkInterface iface = NetworkInterface.getByName(interfaceName);
     for (InterfaceAddress address : iface.getInterfaceAddresses()) {
