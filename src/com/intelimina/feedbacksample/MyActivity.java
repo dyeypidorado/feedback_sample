@@ -41,6 +41,11 @@ public class MyActivity extends Activity {
         SharedPreferences testPrefs;
 
         try {
+            //  Replace value for createPackageContext if the launcher changes
+            //  e.g.
+            //      For Biofemme launcher, use 'com.intelimina.biofemme'
+            //      For LRI launcher, use 'com.intelimina.lritherapharma'
+            //      Value below defaults for -dev instance.
             edetailingContext = createPackageContext("com.intelimina.unilab", 0);
 
             testPrefs = edetailingContext.getSharedPreferences(BuildConfig.FEEDBACK_TOKEN, Context.MODE_MULTI_PROCESS);
